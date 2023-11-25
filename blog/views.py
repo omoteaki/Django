@@ -22,11 +22,14 @@ class CategoryView(ListView):
         category_id = self.kwargs["category"]
         categories = BlogPost.objects.filter(
             category = category_id).order_by('-posted_at')
+        
+        # カテゴリのタイトルを直接渡したかった
         # category_title = Category.objects.get(
         #     id = category_id)
         # return [categories,category_title]
         return categories
 
+    # オーバーライド
     def get_context_data(self):
         ctx = super().get_context_data()
 
@@ -35,4 +38,9 @@ class CategoryView(ListView):
 
         return ctx
 
+class AboutView(TemplateView):
+    template_name = "about.html"
 
+class CategoryListView(ListView):
+    template_name = "categories.html"
+    model = Category

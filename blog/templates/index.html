@@ -41,13 +41,13 @@
                             on 
 
                             {% comment %}
-                            {{ record.posted_at |date:"D d M Y"}}
-                            November表記をさせたい為、Mと記載しても11月となってしまう為、
+                            {{ record.posted_at |date:"F d, Y"}}
+                            November表記をさせたい為、Fと記載しても11月となってしまう為、
                             下記のテンプレートタグを使用
                             {% endcomment%}
                             {% load i18n %}
                             {% language 'en' %}
-                            {{ record.posted_at |date:"D d M Y"}}/
+                            {{ record.posted_at |date:"F d, Y"}}/
                             <a href="{% url 'blog:blog_cat' category=record.category.id %}">
                                 カテゴリ:{{ record.category }}
                             </a>

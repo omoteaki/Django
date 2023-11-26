@@ -32,17 +32,19 @@
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'blog:categories' %}">Categories</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'accounts:logout' %}">LOGOUT</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="contact.html">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4 btn btn-primary" href="{% url 'blog:post' %}">POST</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
 
-        {% if request.user %}
-        <!-- <h2>hello</h2> -->
+        {% if user.is_authenticated %}
+        <!-- <h2>hello</h2>
+        {{user}} -->
+        {% else %}
         <div class="fixed-btn">
             <button type="button" class="btn btn-outline-primary" onclick="location.href='{% url 'accounts:login' %}'">TRY LOGIN or SIGN IN</button>
         </div>
-        {% else %}
         {% endif %}
         <!-- Page Header-->
         {% block header %}{% endblock header %}

@@ -10,4 +10,6 @@ urlpatterns = [
     path('categories', views.CategoryListView.as_view(), name="categories"),
     path('blog-detail/<int:pk>', views.BlogDetailView.as_view(), name="blog_detail"),
     path('blog/<int:category>', views.CategoryView.as_view(), name="blog_cat"),
+    path('post/', views.CreateBlogView.as_view(), name="post"),
+    path('', views.CreateBlogView.as_view(), name="post_done"),
 ]

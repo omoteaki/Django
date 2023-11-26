@@ -30,12 +30,20 @@
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'blog:index' %}">Home</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'blog:about' %}">About</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'blog:categories' %}">Categories</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="#">JOIN US!</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'accounts:logout' %}">LOGOUT</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="contact.html">Contact</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
+
+        {% if request.user %}
+        <!-- <h2>hello</h2> -->
+        <div class="fixed-btn">
+            <button type="button" class="btn btn-outline-primary" onclick="location.href='{% url 'accounts:login' %}'">TRY LOGIN or SIGN IN</button>
+        </div>
+        {% else %}
+        {% endif %}
         <!-- Page Header-->
         {% block header %}{% endblock header %}
         <!-- Main Content-->

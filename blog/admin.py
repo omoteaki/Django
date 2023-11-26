@@ -7,8 +7,8 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display_links = ("id", "title")
 
 class BlogPostAdmin(admin.ModelAdmin):
-    list_display = ("id", "title")
-    list_display_links = ("id", "title")
+    list_display = ("id", "title", "category")
+    list_display_links = ("id", "title", "category")
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(BlogPost, BlogPostAdmin)

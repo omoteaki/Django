@@ -2,11 +2,12 @@
 from typing import Any
 from django.db.models.query import QuerySet
 from django.forms.models import BaseModelForm
-from django.http import HttpResponse
+from django.http import HttpRequest, HttpResponse
 from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
+from django.db.models import Count
 
 from .models import BlogPost, Category
 from .forms import BlogPostForm
@@ -50,7 +51,21 @@ class AboutView(TemplateView):
 
 class CategoryListView(ListView):
     template_name = "categories.html"
-    model = Category
+    # model = Category
+
+    # カテゴリがいくつ紐付けられているか確認したい...
+    # def get_queryset(self):
+    #     count_category = []
+    #     i = 0
+    #     for i in range(Category.objects.count()):
+    #         BlogPost.objects.filter(category = i)
+    #         i += 1
+    #     return 
+
+    # 下記で解決! (from django.db.models import Count)
+    def get_queryset(self):
+        data = Category.objects.all().annotate(count=Count("blogpost"))
+        return data
 
 
 @method_decorator(login_required, name="dispatch")
